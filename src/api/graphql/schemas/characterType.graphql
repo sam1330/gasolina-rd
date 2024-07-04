@@ -1,0 +1,15 @@
+fragment charactersFragment on Character {
+    id
+    name
+}
+
+type Query {
+    characters: [Character]
+    character(id: ID!): Character
+}
+
+type Character {
+    id: ID!,
+    name: String!,
+    race: String
+}

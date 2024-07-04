@@ -1,0 +1,5 @@
+
+type Gas {
+    id: ID
+    name: String
+}
