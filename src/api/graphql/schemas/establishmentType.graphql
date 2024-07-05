@@ -1,0 +1,11 @@
+
+type Query {
+    establishments: [Establishment] 
+}
+
+type Establishment {
+    id: ID!,
+    uuid: String!
+    name: String!
+    address: String
+}
