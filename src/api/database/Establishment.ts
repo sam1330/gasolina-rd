@@ -10,21 +10,9 @@ class Establishment {
     ) {
     }
 
-    public static getEstablishments(): Array<IEstablishment> {
-        let establishments: Array<IEstablishment> = [];
-
-        Connection.instance.connect();
-        Connection.instance.query(`SELECT * FROM establishments;`, (err: any, result: Array<IEstablishment>) => {
-            if (err) {
-                console.log(err);
-            } else {
-                establishments = result;
-                console.log(result);
-            }
-        });
-        Connection.instance.disconnect();
-
-        return establishments;
+    public static async getEstablishments(): Promise<Array<IEstablishment>> {
+        const [establishments] = await Connection.instance.query(`SELECT * FROM establishments;`);
+        return establishments as Array<IEstablishment>;
     }
 }
 

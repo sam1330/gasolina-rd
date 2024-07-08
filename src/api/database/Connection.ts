@@ -1,9 +1,9 @@
-import mysql from "mysql";
+import mysql from "mysql2/promise";
 
 class Connection {
   static #instance: Connection;
 
-  private connection: mysql.Connection;
+  private connection: mysql.Pool;
 
   private constructor() {
     this.connection = this.initialize();
@@ -18,7 +18,7 @@ class Connection {
   }
 
   private initialize() {
-    return mysql.createConnection({
+    return mysql.createPool({
       host: "localhost",
       user: "root",
       password: "",
@@ -30,22 +30,14 @@ class Connection {
     return this.connection;
   }
 
-  public connect() {
-    this.connection.connect((err: any) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("Connected!");
-      }
-    });
-  }
-
   public disconnect() {
     this.connection.end();
   }
 
-  public query(query: string, callback: any) {
-    this.connection.query(query, callback);
+  public async query(query: string, callback?: any) {
+    const result = await this.connection.query(query, callback);
+
+    return result;
   }
 }
 

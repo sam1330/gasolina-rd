@@ -2,7 +2,7 @@ import Establishment from "../../database/Establishment";
 import { IEstablishment } from "@/api/types/EstablishmentType";
 
 const establishmentResolver = {
-    establishments: (): IEstablishment[] => {
+    establishments: (): Promise<IEstablishment[]> => {
         return Establishment.getEstablishments();
     },
 };

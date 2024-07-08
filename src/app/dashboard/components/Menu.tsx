@@ -2,10 +2,10 @@ import Image from "next/image";
 
 const Menu = () => {
   return (
-    <nav className="bg-teal-500 p-6 flex justify-center">
+    <nav className="p-6 flex justify-center">
       <div className="flex items-center justify-between flex-wrap w-full max-w-screen-xl">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
-          <Image src="/assets/logo1.png" alt="Logo" width={250} height={250} />
+          <Image src="/assets/logo dark.png" alt="Logo" width={250} height={250} />
         </div>
         <div className="block lg:hidden">
           <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
