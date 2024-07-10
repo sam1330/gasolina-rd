@@ -3,3 +3,8 @@ export interface IGasType {
     uuid: string;
     name: string;
 }
+
+export type TGasTypeCatalog = {
+    value: string;
+    label: string;
+}

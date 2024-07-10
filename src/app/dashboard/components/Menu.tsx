@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Menu = () => {
   return (
-    <nav className="p-6 flex justify-center">
+    <nav className="p-6 flex justify-center bg-emerald-500">
       <div className="flex items-center justify-between flex-wrap w-full max-w-screen-xl">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <Image src="/assets/logo dark.png" alt="Logo" width={250} height={250} />
