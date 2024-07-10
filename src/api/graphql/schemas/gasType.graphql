@@ -1,5 +1,10 @@
 
-type Gas {
+type Query {
+    gas_types: [GasType]
+}
+
+type GasType {
     id: ID
+    uuid: String
     name: String
 }
