@@ -1,0 +1,33 @@
+
+type Query {
+    test_results: [TestResult]
+}
+
+type TestResult {
+    id: ID
+    uuid: String
+    ron: Float!
+    plumb: Float
+    sulfur: Float
+    color: String
+    observations: String
+    gas_type_id: Int!
+    establishment_id: Int!
+    date: String!
+}
+
+# MUTATION (Include this section)
+type Mutation {
+    createTestResult(data: TestResultInput!): TestResult!
+}
+
+input TestResultInput {
+    ron: Float!
+    plumb: Float
+    sulfur: Float
+    color: String
+    observations: String
+    gas_type_id: Int!
+    establishment_id: Int!
+    date: String!
+}

@@ -22,13 +22,38 @@ const CreateTestForm = () => {
   ) => {
     setFormValue((prevState) => ({
       ...prevState,
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.type === "number" ? +event.target.value : event.target.value,
     }));
   };
 
   const { gasTypes } = useGetGasTypesCatalog();
 
-  console.log(gasTypes, "gas_types");
+  const createTestResult = () => {
+    fetch("http://localhost:4000/test_results", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: `mutation CreateTestResult($data: TestResultInput!) {
+          createTestResult(data: $data) {
+            id
+            observations
+          }
+        }`,
+        variables: {
+          data: {
+            ...formValue,
+          }
+        },
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -79,7 +104,7 @@ const CreateTestForm = () => {
               placeholder="Sulfur"
               required
               onChange={handleChange}
-              value={formValue.sulfur}
+              value={formValue.sulfur as any}
             />
           </div>
 
@@ -93,7 +118,7 @@ const CreateTestForm = () => {
               placeholder="Color"
               required
               onChange={handleChange}
-              value={formValue.color}
+              value={formValue.color as any}
             />
           </div>
 
@@ -164,7 +189,10 @@ const CreateTestForm = () => {
             </div>
           </div>
           <div className="col-span-full flex justify-end">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={createTestResult}
+            >
               Crear
             </button>
           </div>
