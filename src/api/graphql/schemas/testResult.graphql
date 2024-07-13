@@ -3,6 +3,11 @@ type Query {
     test_results: [TestResult]
 }
 
+# MUTATION (Include this section)
+type Mutation {
+    createTestResult(data: TestResultInput!): String
+}
+
 type TestResult {
     id: ID
     uuid: String
@@ -16,18 +21,13 @@ type TestResult {
     date: String!
 }
 
-# MUTATION (Include this section)
-type Mutation {
-    createTestResult(data: TestResultInput!): TestResult!
-}
-
 input TestResultInput {
     ron: Float!
     plumb: Float
     sulfur: Float
     color: String
     observations: String
-    gas_type_id: Int!
-    establishment_id: Int!
+    gas_type_id: String!
+    establishment_id: String!
     date: String!
 }

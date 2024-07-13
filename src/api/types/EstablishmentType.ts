@@ -4,3 +4,8 @@ export interface IEstablishment {
     name: string;
     address: string;
 }
+
+export type TEstablishmentCatalog = {
+    value: string;
+    label: string;
+}
