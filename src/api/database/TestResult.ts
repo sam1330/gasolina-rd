@@ -19,7 +19,7 @@ class TestResult {
 
 
 
-    const [testResults] = await Connection.instance.query(
+    await Connection.instance.query(
       `INSERT INTO test_results (uuid, establishment_id, gas_type_id, date, ron, plumb, sulfur, color, observations) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`,
       [
         uuid,
@@ -33,8 +33,6 @@ class TestResult {
         data.observations,
       ]
     );
-
-    console.log(testResults);
 
     return 'Test Result created successfully';
   }
