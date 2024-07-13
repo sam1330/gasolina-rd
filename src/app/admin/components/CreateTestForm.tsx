@@ -2,6 +2,7 @@
 
 import InputGroup from "@/components/base/InputGroup";
 import Select from "@/components/base/Select";
+import { useGetEstablishmentsCatalog } from "@/components/hooks/useEstablishment";
 import { useGetGasTypesCatalog } from "@/components/hooks/useGasTypes";
 import React from "react";
 
@@ -22,11 +23,15 @@ const CreateTestForm = () => {
   ) => {
     setFormValue((prevState) => ({
       ...prevState,
-      [event.target.name]: event.target.type === "number" ? +event.target.value : event.target.value,
+      [event.target.name]:
+        event.target.type === "number"
+          ? parseFloat(event.target.value)
+          : event.target.value,
     }));
   };
 
   const { gasTypes } = useGetGasTypesCatalog();
+  const { establishments } = useGetEstablishmentsCatalog();
 
   const createTestResult = () => {
     fetch("http://localhost:4000/test_results", {
@@ -36,15 +41,12 @@ const CreateTestForm = () => {
       },
       body: JSON.stringify({
         query: `mutation CreateTestResult($data: TestResultInput!) {
-          createTestResult(data: $data) {
-            id
-            observations
-          }
+          createTestResult(data: $data)
         }`,
         variables: {
           data: {
             ...formValue,
-          }
+          },
         },
       }),
     })
@@ -123,31 +125,35 @@ const CreateTestForm = () => {
           </div>
 
           <div className="col-span-full">
-            <InputGroup
-              label="Observaciones"
+            <label
               htmlFor="observations"
-              type="text"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Observaciones
+            </label>
+            <textarea
               name="observations"
               id="observations"
               placeholder="Observaciones"
               required
-              onChange={handleChange}
+              onChange={e => handleChange(e as any)}
               value={formValue.observations as any}
+              className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
 
-          <div className="sm:col-span-2 sm:col-start-1">
+          <div className="sm:col-span-2">
             <label
               htmlFor="gas_type_id"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              City
+              Ciudad
             </label>
             <Select
               name="gas_type_id"
               id="gas_type_id"
               onChange={handleChange}
-              value={formValue.gas_type_id as any}
+              value={formValue.gas_type_id as any || gasTypes[0]?.value}
               options={gasTypes}
               className="mt-2"
             />
@@ -155,35 +161,36 @@ const CreateTestForm = () => {
 
           <div className="sm:col-span-2">
             <label
-              htmlFor="region"
+              htmlFor="establishment_id"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              State / Province
+              Establecimiento
             </label>
-            <div className="mt-2">
-              <input
-                type="text"
-                name="region"
-                id="region"
-                autoComplete="address-level1"
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              />
-            </div>
+            <Select
+              name="establishment_id"
+              id="establishment_id"
+              onChange={handleChange}
+              value={formValue.establishment_id as any || establishments[0]?.value}
+              options={establishments}
+              className="mt-2"
+            />
           </div>
 
           <div className="sm:col-span-2">
             <label
-              htmlFor="postal-code"
+              htmlFor="date"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
-              ZIP / Postal code
+              Fecha
             </label>
             <div className="mt-2">
               <input
-                type="text"
-                name="postal-code"
-                id="postal-code"
-                autoComplete="postal-code"
+                type="date"
+                name="date"
+                id="date"
+                autoComplete="date"
+                value={formValue.date as any}
+                onChange={handleChange}
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
             </div>
