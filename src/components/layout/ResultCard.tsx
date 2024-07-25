@@ -13,15 +13,9 @@ type Result = {
   sulfur: number | null;
   color: string;
   observations: string;
-  gasType: {
-    id: string;
-    name: string;
-  };
-  establishment: {
-    id: string;
-    name: string;
-    address: string;
-  };
+  gas_type_name: string;
+  establishment_name: string;
+  establishment_address: string;
   date: string;
 }
 
@@ -40,9 +34,9 @@ const ResultCard = ({results = []}: IResultCardProps) => {
           {/* STUDY INFO */}
           <div className="w-full flex justify-between">
             <div>
-              <h2 className="text-xl font-bold">{result.establishment.name}</h2>
+              <h2 className="text-xl font-bold">{result.establishment_name}</h2>
               <span className="text-md text-[#716A6A] d-inline-block font-medium">
-                {result.establishment.address}
+                {result.establishment_address}
               </span>
             </div>
             <div>
@@ -54,7 +48,7 @@ const ResultCard = ({results = []}: IResultCardProps) => {
           {/* GAS TYPE */}
           <div className="mt-6 w-full flex justify-between">
             <p className="text-lg text-[#716A6A] font-semibold">
-              {result.gasType.name}
+              {result.gas_type_name}
             </p>
           </div>
           {/* METRICS */}

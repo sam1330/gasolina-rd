@@ -10,8 +10,9 @@ export const useTestResults = () => {
     search: string;
     gasType: string;
     city: string;
-    dateRange: string;
+    dateRange: Array<string>;
   }) => {
+    console.log('execure fetch');
     let testResults: ITestResult[] = [];
     await fetch("http://localhost:4000/test_results", {
       method: "POST",
@@ -29,6 +30,7 @@ export const useTestResults = () => {
               color
               gas_type_name
               establishment_name
+              establishment_address
               observations
             }
           }`,

@@ -30,8 +30,7 @@ const Filters = ({filters, setFilters}: IFiltersProps) => {
             control: () => "w-[26em] rounded-lg",
           }}
           options={establishments}
-          onChange={(e) => onChangeFilters("establishment", e)}
-          value={filters.establishment}
+          onChange={(e) => onChangeFilters("establishment", e.value)}
         />
       </div>
       <div className="d-inline-block w-[20em] mr-4">
@@ -41,8 +40,7 @@ const Filters = ({filters, setFilters}: IFiltersProps) => {
             control: () => "w-full rounded-lg",
           }}
           options={gasTypes}
-          onChange={(e) => onChangeFilters("gasType", e)}
-          value={filters.gasType}
+          onChange={(e) => onChangeFilters("gasType", e.value)}
         />
       </div>
       <div className="d-inline-block w-[20em]">
@@ -52,8 +50,7 @@ const Filters = ({filters, setFilters}: IFiltersProps) => {
             control: () => "w-full rounded-lg",
           }}
           options={gasTypes}
-          onChange={(e) => onChangeFilters("city", e)}
-          value={filters.city}
+          onChange={(e) => onChangeFilters("city", e.value)}
         />
       </div>
     </div>
