@@ -35,6 +35,7 @@ type TestResultQuery {
     observations: String
     gas_type_name: String
     establishment_name: String
+    establishment_address: String
     date: String!
 }
 

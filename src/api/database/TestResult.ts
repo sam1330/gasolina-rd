@@ -9,7 +9,19 @@ class TestResult {
   public static async getTestResults(filters: TestResultFilters): Promise<Array<ITestResult>> {
 
     const [testResults] = await Connection.instance.query(
-      `SELECT test_results.*, gas_types.name as gas_type_name, establishments.name as establishment_name FROM test_results INNER JOIN gas_types ON test_results.gas_type_id = gas_types.id INNER JOIN establishments ON test_results.establishment_id = establishments.id;`
+      `SELECT 
+        test_results.*, gas_types.name as gas_type_name, establishments.name as establishment_name, establishments.address as establishment_address
+        FROM test_results 
+        INNER JOIN gas_types ON test_results.gas_type_id = gas_types.id INNER JOIN establishments ON test_results.establishment_id = establishments.id 
+        WHERE (gas_types.id = ? AND establishments.city_id = ?) OR (establishments.name LIKE ? OR establishments.address LIKE ?) ORDER BY date DESC;`,
+        [
+          filters.gasType ? await convertUuidToID("gas_types", filters.gasType) : null, // GAS_TYPE
+          filters.city ? await convertUuidToID("cities", filters.city) : null, // CITY
+          filters.dateRange ? filters.dateRange[0] : null, // START_DATE
+          filters.dateRange ? filters.dateRange[1] : null, // END_DATE
+          `%${filters.search}%`, // ESTABLISHMENT_NAME
+          `%${filters.search}%` // ESTABLISHMENT_ADDRESS
+        ]
     );
     console.log(filters, testResults);
     return testResults as Array<ITestResult>;

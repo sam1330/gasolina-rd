@@ -4,7 +4,7 @@ import { ITestResult, TestResultFilters } from "@/api/types/TestResultType";
 
 const testResultResolver = {
     Query: {
-        test_results: (_:any, filters: TestResultFilters): Promise<ITestResult[]> => {
+        test_results: (_:any, {filters}: {filters: TestResultFilters}): Promise<ITestResult[]> => {
             return TestResult.getTestResults(filters);
         },
     },
