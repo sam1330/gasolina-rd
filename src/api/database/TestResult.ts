@@ -23,7 +23,7 @@ class TestResult {
           `%${filters.search}%` // ESTABLISHMENT_ADDRESS
         ]
     );
-    console.log(filters, testResults);
+
     return testResults as Array<ITestResult>;
   }
 
