@@ -1,4 +1,4 @@
-import { ITestResult } from "../types/TestResultType";
+import { ITestResult, TestResultFilters } from "../types/TestResultType";
 import { convertUuidToID } from "../utils/uuidToID";
 import Connection from "./Connection";
 import { v4 as uuidv4 } from "uuid";
@@ -6,11 +6,12 @@ import { v4 as uuidv4 } from "uuid";
 class TestResult {
   private constructor() {}
 
-  public static async getTestResults(): Promise<Array<ITestResult>> {
-    const [testResults] = await Connection.instance.query(
-      `SELECT * FROM test_results;`
-    );
+  public static async getTestResults(filters: TestResultFilters): Promise<Array<ITestResult>> {
 
+    const [testResults] = await Connection.instance.query(
+      `SELECT test_results.*, gas_types.name as gas_type_name, establishments.name as establishment_name FROM test_results INNER JOIN gas_types ON test_results.gas_type_id = gas_types.id INNER JOIN establishments ON test_results.establishment_id = establishments.id;`
+    );
+    console.log(filters, testResults);
     return testResults as Array<ITestResult>;
   }
 

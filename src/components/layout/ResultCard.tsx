@@ -2,67 +2,30 @@ import CheckIcon from "../base/Icons/CheckIcon";
 import ErrorIcon from "../base/Icons/ErrorIcon";
 import WarningIcon from "../base/Icons/WarningIcon";
 
-const results = [
-  {
-    id: "43c93b5c-3859-4e25-8965-bb8147a656ad",
-    ron: 95.3,
-    plumb: 0.002,
-    sulfur: null,
-    color: "Amarillo",
-    observations:
-      "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    gasType: {
-      id: "43c93b5c-3859-4e25-8965-bb8147a656ad",
-      name: "Gasoil Premium",
-    },
-    establishment: {
-      id: "43c93b5c-3859-4e25-8965-bb8147a656ad",
-      name: "Shell luperon",
-      address: "Av. Juan B. Justo 1234",
-    },
-    date: "2022-01-24",
-  },
-  {
-    id: "defc7a3e-a980-46d9-9d16-480fe41ec49b",
-    ron: 91.3,
-    plumb: 0.002,
-    sulfur: null,
-    color: "Amarillo",
-    observations:
-      "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    gasType: {
-      id: "43c93b5c-3859-4e25-8965-bb8147a656ad",
-      name: "Gasolina Regular",
-    },
-    establishment: {
-      id: "43c93b5c-3859-4e25-8965-bb8147a656ad",
-      name: "Shell luperon",
-      address: "Av. Juan B. Justo 1234",
-    },
-    date: "2022-01-24",
-  },
-  {
-    id: "42dw9sc-3859-4e25-8965-bb8147a656ad",
-    ron: 94.3,
-    plumb: 0.002,
-    sulfur: null,
-    color: "Amarillo",
-    observations:
-      "lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    gasType: {
-      id: "43c93b5c-3859-4e25-8965-bb8147a656ad",
-      name: "Gasolina Premium",
-    },
-    establishment: {
-      id: "43c93b5c-3859-4e25-8965-bb8147a656ad",
-      name: "Shell luperon",
-      address: "Av. Juan B. Justo 1234",
-    },
-    date: "2022-01-24",
-  },
-];
+interface IResultCardProps {
+  results: Array<Result>;
+}
 
-const ResultCard = () => {
+type Result = {
+  id: string;
+  ron: number;
+  plumb: number;
+  sulfur: number | null;
+  color: string;
+  observations: string;
+  gasType: {
+    id: string;
+    name: string;
+  };
+  establishment: {
+    id: string;
+    name: string;
+    address: string;
+  };
+  date: string;
+}
+
+const ResultCard = ({results = []}: IResultCardProps) => {
   const formatDate = (date: string) => {
     const newDate = new Date(date);
     return newDate.toLocaleDateString();
