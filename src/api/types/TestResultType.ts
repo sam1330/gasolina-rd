@@ -5,15 +5,9 @@ export interface ITestResult {
     sulfur: number,
     color: string,
     observations: string,
-    gasType: {
-        id: string,
-        name: string,
-    },
-    establishment: {
-        id: string,
-        name: string,
-        address: string,
-    },
+    gas_type_name: string,
+    establishment_name: string,
+    establishment_address: string,
     date: string,
 }
 

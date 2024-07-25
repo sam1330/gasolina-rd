@@ -43,7 +43,7 @@ input TestResultsFilters {
     search: String
     gasType: String
     city: String
-    dateRange: String
+    dateRange: [String]
 }
 
 input TestResultInput {
