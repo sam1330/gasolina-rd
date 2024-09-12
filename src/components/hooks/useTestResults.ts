@@ -26,7 +26,7 @@ export const useTestResults = () => {
               ron
               plumb
               sulfur
-              date
+              formatted_date
               color
               gas_type_name
               establishment_name

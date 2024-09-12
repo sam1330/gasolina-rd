@@ -8,7 +8,7 @@ export interface ITestResult {
     gas_type_name: string,
     establishment_name: string,
     establishment_address: string,
-    date: string,
+    formatted_date: string,
 }
 
 export type TestResultFilters = {

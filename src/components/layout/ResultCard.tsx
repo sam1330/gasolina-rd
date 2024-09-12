@@ -16,14 +16,10 @@ type Result = {
   gas_type_name: string;
   establishment_name: string;
   establishment_address: string;
-  date: string;
+  formatted_date: string;
 }
 
 const ResultCard = ({results = []}: IResultCardProps) => {
-  const formatDate = (date: string) => {
-    const newDate = new Date(date);
-    return newDate.toLocaleDateString();
-  };
   return (
     <div className="mt-6">
       {results.map((result) => (
@@ -41,7 +37,7 @@ const ResultCard = ({results = []}: IResultCardProps) => {
             </div>
             <div>
               <p className="text-md text-[#716A6A] font-semibold">
-                Fecha del estudio: {formatDate(result.date)}
+                Fecha del estudio: {result.formatted_date}
               </p>
             </div>
           </div>
@@ -57,13 +53,13 @@ const ResultCard = ({results = []}: IResultCardProps) => {
               <p className="text-lg text-[#716A6A] font-medium">
                 Octanaje (RON): <ErrorIcon />
               </p>
-              <p className="text-lg font-semibold">{result.ron}</p>
+              <p className="text-lg font-semibold">{result.ron ?? "N/D"}</p>
             </div>
             <div>
               <p className="text-lg text-[#716A6A] font-medium">
                 Plomo: <CheckIcon />
               </p>
-              <p className="text-lg font-semibold">{result.plumb}</p>
+              <p className="text-lg font-semibold">{result.plumb ?? "N/D"}</p>
             </div>
             <div>
               <p className="text-lg text-[#716A6A] font-medium">
@@ -75,12 +71,9 @@ const ResultCard = ({results = []}: IResultCardProps) => {
               <p className="text-lg text-[#716A6A] font-medium">
                 Color: <ErrorIcon />
               </p>
-              <p className="text-lg font-semibold">{result.color}</p>
+              <p className="text-lg font-semibold">{result.color ?? "N/D"}</p>
             </div>
           </div>
-          {/* <div className="mt-4 w-11/12 flex justify-between">
-            
-          </div> */}
           <div className="mt-4 w-11/12 flex justify-between">
             <div>
               <p className="text-lg text-[#716A6A] font-medium">
