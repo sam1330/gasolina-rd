@@ -12,7 +12,7 @@ type Mutation {
 type TestResult {
     id: ID
     uuid: String
-    ron: Float!
+    ron: Float
     plumb: Float
     sulfur: Float
     color: String
@@ -28,7 +28,7 @@ type GasType {
 
 type TestResultQuery {
     id: String
-    ron: Float!
+    ron: Float
     plumb: Float
     sulfur: Float
     color: String
@@ -48,12 +48,12 @@ input TestResultsFilters {
 }
 
 input TestResultInput {
-    ron: Float!
+    ron: Float
     plumb: Float
     sulfur: Float
     color: String
     observations: String
-    gas_type_id: String!
+    gas_type_id: String
     establishment_id: String!
     date: String!
 }

@@ -22,7 +22,7 @@ type Result = {
 const ResultCard = ({results = []}: IResultCardProps) => {
   return (
     <div className="mt-6">
-      {results.map((result) => (
+      {results?.map((result) => (
         <div
           key={result.id}
           className="p-6 bg-[#F9F9F9] mb-4 border rounded-xl"

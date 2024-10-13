@@ -6,30 +6,31 @@ import { v4 as uuidv4 } from "uuid";
 class TestResult {
   private constructor() {}
 
-  public static async getTestResults(filters: TestResultFilters): Promise<Array<ITestResult>> {
-
+  public static async getTestResults(
+    filters: TestResultFilters
+  ): Promise<Array<ITestResult>> {
     const [testResults] = await Connection.instance.query(
       `SELECT 
-      test_results.*, DATE_FORMAT(test_results.date, '%d/%m/%Y') as formatted_date, gas_types.name as gas_type_name, establishments.name as establishment_name, establishments.address as establishment_address
+      test_results.*, DATE_FORMAT(test_results.date, '%d/%m/%Y') as formatted_date, COALESCE(gas_types.name, '') as gas_type_name, establishments.name as establishment_name, establishments.address as establishment_address
       FROM test_results 
-      INNER JOIN gas_types ON test_results.gas_type_id = gas_types.id 
+      LEFT JOIN gas_types ON test_results.gas_type_id = gas_types.id 
       INNER JOIN establishments ON test_results.establishment_id = establishments.id 
       WHERE 
-        (gas_types.id = IFNULL(?, gas_types.id))
-        AND (establishments.city_id = IFNULL(?, establishments.city_id))
-        AND (test_results.date >= IFNULL(?, test_results.date))
-        AND (test_results.date <= IFNULL(?, test_results.date))
-        AND (establishments.name LIKE IFNULL(CONCAT('%', ?, '%'), establishments.name))
-        AND (establishments.address LIKE IFNULL(CONCAT('%', ?, '%'), establishments.address))
-        ORDER BY date DESC LIMIT 10;`,
-        [
-          filters.gasType ? await convertUuidToID("gas_types", filters.gasType) : null, // GAS_TYPE
-          filters.city ? await convertUuidToID("cities", filters.city) : null, // CITY
-          filters.dateRange ? filters.dateRange[0] : null, // START_DATE
-          filters.dateRange ? filters.dateRange[1] : null, // END_DATE
-          `%${filters.search}%`, // ESTABLISHMENT_NAME
-          `%${filters.search}%` // ESTABLISHMENT_ADDRESS
-        ]
+        (gas_types.id = COALESCE(?, gas_types.id))
+        AND (establishments.city_id = COALESCE(?, establishments.city_id))
+        AND (test_results.date >= COALESCE(?, test_results.date))
+        AND (test_results.date <= COALESCE(?, test_results.date))
+        AND (establishments.name LIKE COALESCE(CONCAT('%', ?, '%'), establishments.name))
+        ORDER BY date ASC LIMIT 10;`,
+      [
+        filters.gasType
+          ? await convertUuidToID("gas_types", filters.gasType)
+          : null, // GAS_TYPE
+        filters.city ? await convertUuidToID("cities", filters.city) : null, // CITY
+        filters.dateRange ? filters.dateRange[0] : null, // START_DATE
+        filters.dateRange ? filters.dateRange[1] : null, // END_DATE
+        filters?.search ?? "", // ESTABLISHMENT_NAME
+      ]
     );
 
     return testResults as Array<ITestResult>;
@@ -53,7 +54,7 @@ class TestResult {
       ]
     );
 
-    return 'Test Result created successfully';
+    return "Test Result created successfully";
   }
 }
 
