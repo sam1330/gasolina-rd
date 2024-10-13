@@ -1,0 +1,10 @@
+
+type Query {
+    cities: [City]
+}
+
+type City {
+    id: ID
+    uuid: String
+    name: String
+}

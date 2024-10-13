@@ -1,18 +1,21 @@
 "use client";
 
-import ReactSelect from "react-select";
+import ReactSelect, { SingleValue } from "react-select";
 // import SearchBar from "../base/SearchBar";
 import { useGetGasTypesCatalog } from "../hooks/useGasTypes";
 import { useGetEstablishmentsCatalog } from "../hooks/useEstablishment";
+import { TEstablishmentCatalog } from "@/api/types/EstablishmentType";
+import { useGetCitiesCatalog } from "../hooks/useCities";
 
 interface IFiltersProps {
   filters: any;
   setFilters: any;
 }
 
-const Filters = ({filters, setFilters}: IFiltersProps) => {
+const Filters = ({setFilters}: IFiltersProps) => {
   const { gasTypes } = useGetGasTypesCatalog();
   const { establishments } = useGetEstablishmentsCatalog();
+  const { cities } = useGetCitiesCatalog();
 
   const onChangeFilters = (key: string, value: any) => {
     setFilters((prev: any) => ({
@@ -30,7 +33,8 @@ const Filters = ({filters, setFilters}: IFiltersProps) => {
             control: () => "w-[26em] rounded-lg",
           }}
           options={establishments}
-          onChange={(e) => onChangeFilters("establishment", e.value)}
+          isClearable
+          onChange={(e: SingleValue<TEstablishmentCatalog>) => onChangeFilters("search", e?.label)}
         />
       </div>
       <div className="d-inline-block w-[20em] mr-4">
@@ -40,7 +44,8 @@ const Filters = ({filters, setFilters}: IFiltersProps) => {
             control: () => "w-full rounded-lg",
           }}
           options={gasTypes}
-          onChange={(e) => onChangeFilters("gasType", e.value)}
+          isClearable
+          onChange={(e) => onChangeFilters("gasType", e?.value)}
         />
       </div>
       <div className="d-inline-block w-[20em]">
@@ -49,8 +54,9 @@ const Filters = ({filters, setFilters}: IFiltersProps) => {
           classNames={{
             control: () => "w-full rounded-lg",
           }}
-          options={gasTypes}
-          onChange={(e) => onChangeFilters("city", e.value)}
+          options={cities}
+          isClearable
+          onChange={(e) => onChangeFilters("city", e?.value)}
         />
       </div>
     </div>

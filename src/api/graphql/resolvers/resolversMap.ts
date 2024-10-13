@@ -1,4 +1,5 @@
 import characterResolver from "./characterResolver";
+import cityResolver from "./cityResolver";
 import establishmentResolver from "./establishmentResolver";
 import gameResolver from "./gameResolver";
 import gasTypeResolver from "./gasTypeResolver";
@@ -10,7 +11,8 @@ const resolvers = {
     ...gameResolver,
     ...establishmentResolver,
     ...gasTypeResolver,
-    ...testResultResolver.Query
+    ...testResultResolver.Query,
+    ...cityResolver
   },
   Mutation: {
     ...testResultResolver.Mutation
