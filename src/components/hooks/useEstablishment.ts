@@ -5,7 +5,7 @@ export const useGetEstablishmentsCatalog = () => {
   const [establishments, setEstablishments] = useState<Array<TEstablishmentCatalog>>([]);
 
   const getEstablishmentsCatalog = async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_API}/establishments`, {
+    await fetch(`https://gasolina-rd.onrender.com/establishments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -6,7 +6,7 @@ export const useGetCitiesCatalog = () => {
   const [cities, setCities] = useState<Array<TCityTypeCatalog>>([]);
 
   const getCitiesCatalog = async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_API}/cities`, {
+    await fetch(`https://gasolina-rd.onrender.com/cities`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

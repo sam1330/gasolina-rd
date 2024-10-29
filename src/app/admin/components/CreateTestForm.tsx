@@ -34,7 +34,7 @@ const CreateTestForm = () => {
   const { establishments } = useGetEstablishmentsCatalog();
 
   const createTestResult = () => {
-    fetch(`${process.env.NEXT_PUBLIC_API}/test_results`, {
+    fetch(`https://gasolina-rd.onrender.com/test_results`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

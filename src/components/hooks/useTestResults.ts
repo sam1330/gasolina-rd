@@ -14,7 +14,7 @@ export const useTestResults = () => {
   }) => {
     console.log('execure fetch', process.env.NEXT_PUBLIC_API);
     let testResults: ITestResult[] = [];
-    await fetch(`${process.env.NEXT_PUBLIC_API}/test_results`, {
+    await fetch(`https://gasolina-rd.onrender.com/test_results`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
