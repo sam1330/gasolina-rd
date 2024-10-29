@@ -16,7 +16,6 @@ const characterResolver = {
   character: (
     _parent: any,
     args: { id?: number },
-    _context: any
   ): Character | null => {
     const { id } = args;
     if (id) {

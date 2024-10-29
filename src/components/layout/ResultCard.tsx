@@ -1,6 +1,6 @@
 import CheckIcon from "../base/Icons/CheckIcon";
 import ErrorIcon from "../base/Icons/ErrorIcon";
-import WarningIcon from "../base/Icons/WarningIcon";
+// import WarningIcon from "../base/Icons/WarningIcon";
 
 interface IResultCardProps {
   results: Array<Result>;
