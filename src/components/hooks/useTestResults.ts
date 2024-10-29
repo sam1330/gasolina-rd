@@ -12,7 +12,7 @@ export const useTestResults = () => {
     city: string;
     dateRange: Array<string>;
   }) => {
-    console.log('execure fetch');
+    console.log('execure fetch', process.env.NEXT_PUBLIC_API);
     let testResults: ITestResult[] = [];
     await fetch(`${process.env.NEXT_PUBLIC_API}/test_results`, {
       method: "POST",
