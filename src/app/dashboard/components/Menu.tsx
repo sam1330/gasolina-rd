@@ -14,7 +14,7 @@ const Menu = () => {
       <div className="flex items-center justify-between flex-wrap w-full max-w-screen-xl">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <Image
-            src="/assets/logo dark.png"
+            src="/assets/Logo dark.png"
             alt="Logo"
             width={250}
             height={250}
