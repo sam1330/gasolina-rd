@@ -14,7 +14,7 @@ export const useTestResults = () => {
   }) => {
     console.log('execure fetch');
     let testResults: ITestResult[] = [];
-    await fetch("http://localhost:4000/test_results", {
+    await fetch(`${process.env.NEXT_PUBLIC_API}/test_results`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

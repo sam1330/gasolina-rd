@@ -5,7 +5,7 @@ export const useGetGasTypesCatalog = () => {
   const [gasTypes, setGasTypes] = useState<Array<TGasTypeCatalog>>([]);
 
   const getGasTypesCatalog = async () => {
-    await fetch("http://localhost:4000/gas_types", {
+    await fetch(`${process.env.NEXT_PUBLIC_API}/gas_types`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -5,7 +5,7 @@ export const useGetEstablishmentsCatalog = () => {
   const [establishments, setEstablishments] = useState<Array<TEstablishmentCatalog>>([]);
 
   const getEstablishmentsCatalog = async () => {
-    await fetch("http://localhost:4000/establishments", {
+    await fetch(`${process.env.NEXT_PUBLIC_API}/establishments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

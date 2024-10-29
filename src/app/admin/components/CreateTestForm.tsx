@@ -34,7 +34,7 @@ const CreateTestForm = () => {
   const { establishments } = useGetEstablishmentsCatalog();
 
   const createTestResult = () => {
-    fetch("http://localhost:4000/test_results", {
+    fetch(`${process.env.NEXT_PUBLIC_API}/test_results`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
