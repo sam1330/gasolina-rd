@@ -19,10 +19,10 @@ class Connection {
 
   private initialize() {
     return mysql.createPool({
-      host: "localhost",
-      user: "root",
-      password: "",
-      database: "gasolina_rd",
+      host: process.env.DATABASE_HOST,
+      user: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
     });
   }
 
