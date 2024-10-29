@@ -1,7 +1,6 @@
 "use client";
 
 import ReactSelect, { SingleValue } from "react-select";
-// import SearchBar from "../base/SearchBar";
 import { useGetGasTypesCatalog } from "../hooks/useGasTypes";
 import { useGetEstablishmentsCatalog } from "../hooks/useEstablishment";
 import { TEstablishmentCatalog } from "@/api/types/EstablishmentType";
@@ -25,19 +24,19 @@ const Filters = ({setFilters}: IFiltersProps) => {
   };
 
   return (
-    <div className="p-4 flex justify-center border rounded-xl drop-shadow-sm">
-      <div className="d-inline-block w-[26em] mr-4">
+    <div className="p-4 flex justify-center flex-col lg:flex-row gap-5 border rounded-xl drop-shadow-sm">
+      <div className="d-inline-block lg:w-1/3">
         <ReactSelect
           placeholder="Establecimiento"
           classNames={{
-            control: () => "w-[26em] rounded-lg",
+            control: () => "w-full rounded-lg",
           }}
           options={establishments}
           isClearable
           onChange={(e: SingleValue<TEstablishmentCatalog>) => onChangeFilters("search", e?.label)}
         />
       </div>
-      <div className="d-inline-block w-[20em] mr-4">
+      <div className="d-inline-block lg:w-1/3">
         <ReactSelect
           placeholder="Tipo de combustible"
           classNames={{
@@ -48,7 +47,7 @@ const Filters = ({setFilters}: IFiltersProps) => {
           onChange={(e) => onChangeFilters("gasType", e?.value)}
         />
       </div>
-      <div className="d-inline-block w-[20em]">
+      <div className="d-inline-block lg:w-1/3">
         <ReactSelect
           placeholder="Provincia"
           classNames={{

@@ -19,6 +19,8 @@ type Result = {
   formatted_date: string;
 }
 
+
+
 const ResultCard = ({results = []}: IResultCardProps) => {
   return (
     <div className="mt-6">
@@ -28,7 +30,7 @@ const ResultCard = ({results = []}: IResultCardProps) => {
           className="p-6 bg-[#F9F9F9] mb-4 border rounded-xl"
         >
           {/* STUDY INFO */}
-          <div className="w-full flex justify-between">
+          <div className="w-full flex justify-between flex-wrap">
             <div>
               <h2 className="text-xl font-bold">{result.establishment_name}</h2>
               <span className="text-md text-[#716A6A] d-inline-block font-medium">
@@ -48,10 +50,10 @@ const ResultCard = ({results = []}: IResultCardProps) => {
             </p>
           </div>
           {/* METRICS */}
-          <div className="mt-4 w-11/12 flex justify-between">
+          <div className="mt-4 w-11/12 flex justify-between flex-wrap">
             <div>
               <p className="text-lg text-[#716A6A] font-medium">
-                Octanaje (RON): <ErrorIcon />
+                Octanaje (RON): {result.ron <= 94.5 ? (<ErrorIcon />) : (<CheckIcon />)}
               </p>
               <p className="text-lg font-semibold">{result.ron ?? "N/D"}</p>
             </div>

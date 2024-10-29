@@ -41,7 +41,7 @@ export default function Dashboard() {
       <div className="p-6 mt-6 flex justify-center">
         <div className="w-full max-w-screen-xl">
           <Filters filters={filters} setFilters={setFilters}/>
-          <div className="px-12">
+          <div className="px-2 md:px-12">
             <ResultCard results={results} />
           </div>
         </div>
