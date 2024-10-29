@@ -51,27 +51,27 @@ const ResultCard = ({results = []}: IResultCardProps) => {
           </div>
           {/* METRICS */}
           <div className="mt-4 w-11/12 flex justify-between flex-wrap">
-            <div>
+            <div className="min-w-[160px]">
               <p className="text-lg text-[#716A6A] font-medium">
                 Octanaje (RON): {result.ron <= 94.5 ? (<ErrorIcon />) : (<CheckIcon />)}
               </p>
               <p className="text-lg font-semibold">{result.ron ?? "N/D"}</p>
             </div>
-            <div>
+            <div className="min-w-[160px]">
               <p className="text-lg text-[#716A6A] font-medium">
-                Plomo: <CheckIcon />
+                Plomo:
               </p>
               <p className="text-lg font-semibold">{result.plumb ?? "N/D"}</p>
             </div>
-            <div>
+            <div className="min-w-[160px]">
               <p className="text-lg text-[#716A6A] font-medium">
-                Azufre: <WarningIcon />
+                Azufre:
               </p>
               <p className="text-lg font-semibold">{result.sulfur ?? "N/D"}</p>
             </div>
-            <div>
+            <div className="min-w-[160px]">
               <p className="text-lg text-[#716A6A] font-medium">
-                Color: <ErrorIcon />
+                Color:
               </p>
               <p className="text-lg font-semibold">{result.color ?? "N/D"}</p>
             </div>
