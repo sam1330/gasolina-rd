@@ -1,6 +1,7 @@
 'use client';
 
-import Image from "next/image";
+// import LogoDark from "@/components/base/Icons/LogoDark";
+// import Image from "next/image";
 import { useState } from "react";
 
 const Menu = () => {
@@ -13,12 +14,14 @@ const Menu = () => {
     <nav className="p-6 flex justify-center bg-emerald-500">
       <div className="flex items-center justify-between flex-wrap w-full max-w-screen-xl">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
-          <Image
+          {/* <Image
             src="/assets/Logo dark.png"
             alt="Logo"
             width={250}
             height={250}
-          />
+          /> */}
+          <h1 className="text-3xl font-bold">Gasolina RD</h1>
+          {/* <LogoDark /> */}
         </div>
         <div className="block lg:hidden">
           <button
